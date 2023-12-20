@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import PropTypes from 'prop-types';
 
 const CardWrapper = styled.div`
     display: flex;
@@ -76,5 +77,9 @@ const Card = ({ data }) => {
         </CardWrapper>
     )
 }
+
+Card.propTypes = {
+    data: PropTypes.object.isRequired,
+};
 
 export default Card;

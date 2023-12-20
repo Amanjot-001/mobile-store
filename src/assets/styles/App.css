@@ -6,12 +6,7 @@
 
 @font-face {
   font-family: futura;
-  src: url('../fonts/futura/bold.ttf');
-}
-
-@font-face {
-  font-family: futura-bold;
-  src: url('../fonts/futura/extra-bold.ttf');
+  src: url('../fonts/futura-bold.ttf');
 }
 
 @font-face {
