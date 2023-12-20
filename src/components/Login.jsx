@@ -4,6 +4,7 @@ import { useState } from "react";
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [mode, setMode] = useState(false);
 
     const handleRegister = async () => {
         try {
@@ -44,10 +45,68 @@ const Login = () => {
         }
     };
 
+    const handleLogin = async () => {
+        try {
+            const loginUser = await fetch('http://localhost:8080/login', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ username, password }),
+            });
+            if (loginUser.status === 200) {
+                console.log('Login successful');
+            } else {
+                document.querySelector('.username input').value = '';
+                document.querySelector('.password input').value = '';
+                document.querySelector('.username input').placeholder = 'Invalid username or password';
+            }
+
+        } catch (error) {
+            console.error('Error loggin in user:', error);
+        }
+    }
+
+    const handleValidation = () => {
+        if (username.length === 0) {
+            document.querySelector(".username input").placeholder =
+                "Enter a username";
+        }
+
+        if (username.length === 25) {
+            document.querySelector(".username input").placeholder =
+                "Enter lessthan 25 chars";
+        }
+
+        if (password.length === 0) {
+            document.querySelector(".password input").placeholder =
+                "Enter valid password";
+        }
+
+        if (password.length === 50) {
+            document.querySelector(".password input").placeholder =
+                "Enter lessthan 50 chars";
+        }
+
+        if (username.length !== 0 && password.length !== 0) {
+            if (mode) {
+                handleRegister();
+            } else {
+                handleLogin();
+            }
+        }
+    }
+
+    const handleChangeMode = () => {
+        setUsername('');
+        setPassword('');
+        setMode((prev) => !prev); 
+      };
+
     return (
         <LoginWrapper>
             <div className="heading">
-                Register
+                {mode ? 'Login' : 'Register'}
             </div>
             <div className="username">
                 <label htmlFor="username">Username:</label>
@@ -74,10 +133,10 @@ const Login = () => {
                 />
             </div>
             <div className="auth-btn" onClick={handleValidation}>
-                Create
+                {mode ? 'Login' : 'Create'}
             </div>
-            <div className="down-sec">
-                Login instead
+            <div className="down-sec" onChange={handleChangeMode}>
+                {mode ? 'Create a User' : 'Login instead'}
             </div>
         </LoginWrapper>
     )
