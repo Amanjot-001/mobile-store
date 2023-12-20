@@ -6,6 +6,7 @@ import './index.css'
 import Display from './components/Display'
 import Cart from './components/Cart'
 import Login from './components/Login'
+import Expand from './components/Expand'
 
 const appRouter = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const appRouter = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/:id',
+        element: <Expand />
       },
     ]
   }
