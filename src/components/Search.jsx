@@ -4,6 +4,7 @@ import { faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { osFilter, processorFilter, storageFilter, memoryFilter } from "../utils/filterOptions";
 import { SearchWrapper, FilterDiv, SearchDiv } from "../assets/styles/search";
 import { useState } from "react";
+import PropTypes from 'prop-types';
 
 const Search = ({ onSearch, onFilterChange, onFilterApply, onClearFilter }) => {
     const [searchQuery, setSearchQuery] = useState("");
@@ -85,5 +86,12 @@ const Search = ({ onSearch, onFilterChange, onFilterApply, onClearFilter }) => {
         </SearchWrapper>
     )
 }
+
+Search.propTypes = {
+    onSearch: PropTypes.func.isRequired,
+    onFilterChange: PropTypes.func.isRequired,
+    onFilterApply: PropTypes.func.isRequired,
+    onClearFilter: PropTypes.func.isRequired,
+};
 
 export default Search;
