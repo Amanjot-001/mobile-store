@@ -6,6 +6,7 @@ import './index.css'
 import Display from './components/Display'
 import Cart from './components/Cart'
 import Login from './components/Login'
+import Search from './components/Search'
 
 const appRouter = createBrowserRouter([
   {
@@ -14,7 +15,12 @@ const appRouter = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Display />
+        element: (
+          <>
+            <Search />
+            <Display />
+          </>
+        )
       },
       {
         path: '/cart',

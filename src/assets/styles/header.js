@@ -3,6 +3,11 @@ import styled from "styled-components"
 export const HeaderWrapper = styled.div`
     color: #213875;
     border-bottom: 1px solid #dea1ea;
+
+    .links {
+    text-decoration: none;
+    color: inherit;
+}
 `;
 
 export const BaseDiv = styled.div`
