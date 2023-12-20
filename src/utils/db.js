@@ -77,7 +77,7 @@ const Data = [
         image_url: 'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-12-1.jpg'
     },
     {
-        id: 6,
+        id: 7,
         name: 'OnePlus 11',
         brand: 'OnePlus',
         processor: 'Snapdragon 8 Gen 2',
@@ -86,6 +86,17 @@ const Data = [
         ram: ['8 gb', '16 gb'],
         os: 'Android',
         image_url: 'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-11-2.jpg'
+    },
+    {
+        id: 8,
+        name: 'Realme GT5 Pro',
+        brand: 'Realme',
+        processor: 'Snapdragon 8 Gen 3',
+        price: ['35684', '52648'],
+        storage: ['128 gb', '256 gb'],
+        ram: ['8 gb', '8 gb'],
+        os: 'Android',
+        image_url: 'https://fdn2.gsmarena.com/vv/pics/realme/realme-gt5-pro-1.jpg'
     },
 ]
 
