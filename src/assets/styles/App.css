@@ -4,6 +4,11 @@
   box-sizing: border-box;
 }
 
+@font-face {
+  font-family: futura;
+  src: url('../fonts/futura/bold.ttf');
+}
+
 .app {
   width: 100%;
 }
