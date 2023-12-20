@@ -1,7 +1,8 @@
 import styled from "styled-components";
 import Filter from "./Filter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { faFilter, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { osFilter, processorFilter, storageFilter, memoryFilter } from "../utils/filterOptions";
 
 const SearchWrapper = styled.div`
     display: flex;
@@ -34,31 +35,36 @@ const SearchDiv = styled.div`
 `;
 
 const FilterDiv = styled.div`
-    
+    button {
+        gap: 0.5rem;
+        border: 1px solid black;
+        border-radius: 5px;
+        padding: 0.2rem;
+        color: #fff;
+    }
 `
 
 const Search = () => {
-    const filterOptions = [
-        { label: 'Option 1', value: 'option1' },
-        { label: 'Option 2', value: 'option2' },
-        { label: 'Option 3', value: 'option3' },
-      ];
     
     return (
         <SearchWrapper>
             <SearchDiv>
-                To Search:
+                To Search :
                 <input type="text" />
                 <button className="bg-sky-800 flex justify-center items-center">
                     Enter
                     <FontAwesomeIcon icon={faMagnifyingGlass} />
                     </button>
             </SearchDiv>
-            <FilterDiv>
-                <Filter title="OS" entries={filterOptions}/>
-                <Filter title="Processor" entries={filterOptions}/>
-                <Filter title="Storage" entries={filterOptions}/>
-                <Filter title="Memory" entries={filterOptions}/>
+            <FilterDiv className="flex flex-col justify-center items-start gap-2">
+                <Filter title="OS" entries={osFilter}/>
+                <Filter title="Processor" entries={processorFilter}/>
+                <Filter title="Storage" entries={storageFilter}/>
+                <Filter title="Memory" entries={memoryFilter}/>
+                <button className="bg-sky-800 flex justify-center items-center">
+                    Filter
+                    <FontAwesomeIcon icon={faFilter} />
+                </button>
             </FilterDiv>
         </SearchWrapper>
     )

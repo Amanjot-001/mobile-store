@@ -51,7 +51,7 @@ const Data = [
         price: ['70130', '85530'],
         storage: ['256 gb', '512 gb'],
         ram: ['12 gb', '12 gb'],
-        os: 'android',
+        os: 'Android',
         image_url: 'https://fdn2.gsmarena.com/vv/pics/google/google-pixel-8-pro-1.jpg'
     },
     {
@@ -62,7 +62,7 @@ const Data = [
         price: ['40990', '59900'],
         storage: ['128 gb', '256 gb'],
         ram: ['8 gb', '8 gb'],
-        os: 'android',
+        os: 'Android',
         image_url: 'https://fdn2.gsmarena.com/vv/pics/google/google-pixel7-2.jpg'
     },
     {
@@ -73,7 +73,7 @@ const Data = [
         price: ['70564', '86545'],
         storage: ['256 gb', '512 gb'],
         ram: ['8 gb', '12 gb'],
-        os: 'android',
+        os: 'Android',
         image_url: 'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-12-1.jpg'
     },
     {
@@ -84,7 +84,7 @@ const Data = [
         price: ['49999', '61999'],
         storage: ['128 gb', '256 gb'],
         ram: ['8 gb', '16 gb'],
-        os: 'android',
+        os: 'Android',
         image_url: 'https://fdn2.gsmarena.com/vv/pics/oneplus/oneplus-11-2.jpg'
     },
 ]
