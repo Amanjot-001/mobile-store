@@ -1,11 +1,16 @@
 import PropTypes from 'prop-types';
 import { FilterWrapper } from '../assets/styles/filter';
 
-const Filter = ({ entries, title }) => {
+const Filter = ({ entries, title, onFilterChange }) => {
+    const handleFilterChange = (e) => {
+        const selectedValue = e.target.value;
+        onFilterChange(selectedValue);
+    };
+
     return (
         <FilterWrapper className='flex justify-between items-center gap-1'>
             <label>{title} :</label>
-            <select>
+            <select onChange={handleFilterChange}>
                 <option value="">Select an option</option>
                 {entries.map((entry, index) => (
                     <option key={index} value={entry.value}>
@@ -25,6 +30,7 @@ Filter.propTypes = {
         })
     ).isRequired,
     title: PropTypes.string.isRequired,
+    onFilterChange: PropTypes.func.isRequired,
 };
 
 export default Filter;
