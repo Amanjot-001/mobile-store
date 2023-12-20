@@ -1,15 +1,6 @@
-import styled from "styled-components";
 import Card from "./Card";
 import Data from "../utils/db";
-
-const DisplayWrapper = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1rem;
-    margin-bottom: 1rem;
-`;
+import { DisplayWrapper } from "../assets/styles/display";
 
 const Display = () => {
     return (
