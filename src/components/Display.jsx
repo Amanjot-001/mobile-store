@@ -10,6 +10,7 @@ const Display = () => {
     const [processorFilter, setProcessorFilter] = useState("");
     const [storageFilter, setStorageFilter] = useState("");
     const [memoryFilter, setMemoryFilter] = useState("");
+    const [filterApplied, setFilterApplied] = useState(false);
 
     const handleSearch = (query) => {
         const newData = Data.filter((entry) =>
@@ -38,22 +39,42 @@ const Display = () => {
     };
 
     const applyFilters = () => {
-        const newData = Data
-            .filter(entry => !osFilter || entry.os === osFilter)
-            .filter(entry => !processorFilter || entry.processor === processorFilter)
-            .filter(entry => !storageFilter || entry.storage.includes(storageFilter))
-            .filter(entry => !memoryFilter || entry.ram.includes(memoryFilter));
+        if (filterApplied) {
+            const newData = Data
+                .filter(entry => !osFilter || entry.os === osFilter)
+                .filter(entry => !processorFilter || entry.processor === processorFilter)
+                .filter(entry => !storageFilter || entry.storage.includes(storageFilter))
+                .filter(entry => !memoryFilter || entry.ram.includes(memoryFilter));
 
-        setFilteredData(newData);
+            setFilteredData(newData);
+        }
+        setFilterApplied(true);
     };
+
+    const clearFilters = () => {
+        setOsFilter("");
+        setProcessorFilter("");
+        setStorageFilter("");
+        setMemoryFilter("");
+        setFilterApplied(false);
+    }
 
     useEffect(() => {
         applyFilters();
-    }, [osFilter, processorFilter, storageFilter, memoryFilter]);
+    }, [filterApplied]);
 
     return (
         <>
-            <Search onSearch={handleSearch} onFilterChange={handleFilterChange} onFilterApply={applyFilters}/>
+            <Search
+                onSearch={handleSearch}
+                onFilterChange={handleFilterChange}
+                onFilterApply={() => {
+                    setFilterApplied(false);
+                    applyFilters();
+                    }
+                }
+                onClearFilter={clearFilters}
+            />
             <DisplayWrapper>
                 {filteredData.map((entry) => (
                     <Card key={entry.id} data={entry} />
