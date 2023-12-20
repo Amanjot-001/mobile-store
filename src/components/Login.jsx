@@ -4,7 +4,7 @@ import { useState } from "react";
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [mode, setMode] = useState(false);
+    const [mode, setMode] = useState(true);
 
     const handleRegister = async () => {
         try {
@@ -26,7 +26,7 @@ const Login = () => {
                     });
                     if (registerUser.status === 201) {
                         document.querySelector('.username input').value = '';
-                        document.querySelector('.password input').value = '';
+                        document.querySelector('.pass input').value = '';
                         document.querySelector('.username input').placeholder = 'Registered succesfully';
                     } else {
                         console.log("Failed to register user");
@@ -37,7 +37,7 @@ const Login = () => {
             }
             else if (checkUserExist.status === 200) {
                 document.querySelector('.username input').value = '';
-                document.querySelector('.password input').value = '';
+                document.querySelector('.pass input').value = '';
                 document.querySelector('.username input').placeholder = 'Username already exists';
             }
         } catch (error) {
@@ -58,7 +58,7 @@ const Login = () => {
                 console.log('Login successful');
             } else {
                 document.querySelector('.username input').value = '';
-                document.querySelector('.password input').value = '';
+                document.querySelector('.pass input').value = '';
                 document.querySelector('.username input').placeholder = 'Invalid username or password';
             }
 
@@ -79,17 +79,17 @@ const Login = () => {
         }
 
         if (password.length === 0) {
-            document.querySelector(".password input").placeholder =
-                "Enter valid password";
+            document.querySelector(".pass input").placeholder =
+                "Enter a password";
         }
 
         if (password.length === 50) {
-            document.querySelector(".password input").placeholder =
+            document.querySelector(".pass input").placeholder =
                 "Enter lessthan 50 chars";
         }
 
         if (username.length !== 0 && password.length !== 0) {
-            if (mode) {
+            if (!mode) {
                 handleRegister();
             } else {
                 handleLogin();
@@ -135,7 +135,7 @@ const Login = () => {
             <div className="auth-btn" onClick={handleValidation}>
                 {mode ? 'Login' : 'Create'}
             </div>
-            <div className="down-sec" onChange={handleChangeMode}>
+            <div className="down-sec" onClick={handleChangeMode}>
                 {mode ? 'Create a User' : 'Login instead'}
             </div>
         </LoginWrapper>
