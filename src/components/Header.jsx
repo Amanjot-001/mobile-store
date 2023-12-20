@@ -1,6 +1,9 @@
 import { HeaderWrapper, LeftSection, Logo, RightSection } from "../assets/styles/header";
+import { useSelector } from 'react-redux';
 
 const Header = () => {
+    const cartItems = useSelector((store) => store.cart.items);
+
     return (
         <HeaderWrapper className="flex justify-between items-center">
             <LeftSection className="flex">
@@ -19,7 +22,7 @@ const Header = () => {
                     Login
                 </div>
                 <div className="cart-btn">
-                    Cart
+                    Cart ({cartItems.length})
                 </div>
             </RightSection>
         </HeaderWrapper>
