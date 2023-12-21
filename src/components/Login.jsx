@@ -1,14 +1,19 @@
 import { LoginWrapper } from "../assets/styles/login";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../utils/authSlice";
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [mode, setMode] = useState(true);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
     const handleRegister = async () => {
         try {
-            const checkUserExist = await fetch('http://localhost:8080/checkUser', {
+            const checkUserExist = await fetch('http://localhost:8080/users/checkUser', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -17,12 +22,12 @@ const Login = () => {
             });
             if (checkUserExist.status === 404) {
                 try {
-                    const registerUser = await fetch('http://localhost:8080/register', {
+                    const registerUser = await fetch('http://localhost:8080/users/register', {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json",
                         },
-                        body: JSON.stringify({ username }),
+                        body: JSON.stringify({ username, password }),
                     });
                     if (registerUser.status === 201) {
                         document.querySelector('.username input').value = '';
@@ -47,7 +52,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const loginUser = await fetch('http://localhost:8080/login', {
+            const loginUser = await fetch('http://localhost:8080/users/login', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -56,6 +61,9 @@ const Login = () => {
             });
             if (loginUser.status === 200) {
                 console.log('Login successful');
+                dispatch(login());
+                navigate('/');
+
             } else {
                 document.querySelector('.username input').value = '';
                 document.querySelector('.pass input').value = '';
@@ -100,8 +108,8 @@ const Login = () => {
     const handleChangeMode = () => {
         setUsername('');
         setPassword('');
-        setMode((prev) => !prev); 
-      };
+        setMode((prev) => !prev);
+    };
 
     return (
         <LoginWrapper>

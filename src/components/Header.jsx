@@ -1,9 +1,29 @@
 import { HeaderWrapper, LeftSection, Logo, RightSection } from "../assets/styles/header";
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
+import { logout } from "../utils/authSlice";
 
 const Header = () => {
     const cartItems = useSelector((store) => store.cart.items);
+    const loggedIn = useSelector((store) => store.auth.isLoggedIn);
+    const dispatch = useDispatch();
+
+    const handleLogout = async () => {
+        try {
+            const logoutUser = await fetch('http://localhost:8080/users/logout', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json",
+                },
+            });
+            if (logoutUser.status === 200) {
+                console.log('Logout successful');
+                dispatch(logout());
+            }
+        } catch (error) {
+            console.error('Error in logout:', error);
+        }
+    }
 
     return (
         <HeaderWrapper className="flex justify-between items-center">
@@ -21,9 +41,9 @@ const Header = () => {
                 </NavLink>
             </Logo>
             <RightSection className="flex">
-                <NavLink className='links' to='/login'>
+                <NavLink className='links' to={!loggedIn ? '/login' : '/'} onClick={!loggedIn ? null : handleLogout}>
                     <div className="login-btn">
-                        Login
+                        {!loggedIn ? 'Login' : 'Logout'}
                     </div>
                 </NavLink>
                 <NavLink className='links' to='/cart'>
