@@ -10,7 +10,7 @@ const Header = () => {
 
     const handleLogout = async () => {
         try {
-            const logoutUser = await fetch('http://localhost:8080/users/logout', {
+            const logoutUser = await fetch('https://mobile-store-backend-x0wq.onrender.com/users/logout', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

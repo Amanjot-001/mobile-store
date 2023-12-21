@@ -9,7 +9,7 @@ function App() {
   useEffect(() => {
     const checkServerStatus = async () => {
       try {
-        const response = await fetch('http://localhost:8080/users/startServer');
+        const response = await fetch('https://mobile-store-backend-x0wq.onrender.com/users/startServer');
         if (response.status === 200) {
           console.log('Server is up and running!');
         } else {

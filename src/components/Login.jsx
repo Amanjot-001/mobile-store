@@ -13,7 +13,7 @@ const Login = () => {
 
     const handleRegister = async () => {
         try {
-            const checkUserExist = await fetch('http://localhost:8080/users/checkUser', {
+            const checkUserExist = await fetch('https://mobile-store-backend-x0wq.onrender.com/checkUser', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
@@ -22,7 +22,7 @@ const Login = () => {
             });
             if (checkUserExist.status === 404) {
                 try {
-                    const registerUser = await fetch('http://localhost:8080/users/register', {
+                    const registerUser = await fetch('https://mobile-store-backend-x0wq.onrender.com/users/register', {
                         method: 'POST',
                         headers: {
                             "Content-Type": "application/json",
@@ -52,7 +52,7 @@ const Login = () => {
 
     const handleLogin = async () => {
         try {
-            const loginUser = await fetch('http://localhost:8080/users/login', {
+            const loginUser = await fetch('https://mobile-store-backend-x0wq.onrender.com/users/login', {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
